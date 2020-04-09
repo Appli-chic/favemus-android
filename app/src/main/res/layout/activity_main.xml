@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorBackground"
     tools:context=".MainActivity">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -40,8 +41,9 @@
         android:layout_gravity="bottom"
         android:background="@color/colorBackground"
         app:labelVisibilityMode="unlabeled"
-        app:itemIconTint="@drawable/tab_color"
         app:menu="@menu/bottom_navigation_menu"
+        app:itemIconSize="28dp"
+        app:itemIconTint="@drawable/navigation_selector"
         />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
