@@ -1,10 +1,10 @@
-package com.applichic.favemus
+package com.applichic.favemus.activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.get
 import androidx.fragment.app.Fragment
-import com.applichic.favemus.fragments.HomeFragment
+import com.applichic.favemus.R
+import com.applichic.favemus.fragment.HomeFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 import kotlinx.android.synthetic.main.activity_main.*
