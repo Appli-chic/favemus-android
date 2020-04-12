@@ -8,18 +8,28 @@ import com.applichic.favemus.db.UserDao
 import com.applichic.favemus.util.LiveDataCallAdapterFactory
 import dagger.Module
 import dagger.Provides
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
+
 
 @Module(includes = [ViewModelModule::class])
 class AppModule {
 
     private fun buildRetrofit(): Retrofit {
+        val interceptor = HttpLoggingInterceptor()
+        interceptor.level = HttpLoggingInterceptor.Level.BODY
+        val client = OkHttpClient.Builder()
+            .addInterceptor(interceptor)
+            .build()
+
         return Retrofit.Builder()
-            .baseUrl("https://api.github.com/")
+            .baseUrl("http://172.20.10.3:8080/")
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(LiveDataCallAdapterFactory())
+            .client(client)
             .build()
     }
 

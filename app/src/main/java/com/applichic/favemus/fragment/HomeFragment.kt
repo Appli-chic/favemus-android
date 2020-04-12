@@ -39,7 +39,7 @@ class HomeFragment : Fragment(), Injectable {
         userViewModel.setId(0)
 
         userViewModel.user.observe(viewLifecycleOwner, Observer {
-
+            print(it)
         })
     }
 
