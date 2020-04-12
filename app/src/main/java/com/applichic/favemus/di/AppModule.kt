@@ -14,15 +14,19 @@ import javax.inject.Singleton
 
 @Module(includes = [ViewModelModule::class])
 class AppModule {
-    @Singleton
-    @Provides
-    fun provideGithubService(): UserService {
+
+    private fun buildRetrofit(): Retrofit {
         return Retrofit.Builder()
             .baseUrl("https://api.github.com/")
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(LiveDataCallAdapterFactory())
             .build()
-            .create(UserService::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun provideUserService(): UserService {
+        return buildRetrofit().create(UserService::class.java)
     }
 
     @Singleton

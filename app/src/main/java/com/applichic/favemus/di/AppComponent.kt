@@ -15,6 +15,7 @@ import javax.inject.Singleton
         MainActivityModule::class
     ]
 )
+
 interface AppComponent {
     @Component.Builder
     interface Builder {
