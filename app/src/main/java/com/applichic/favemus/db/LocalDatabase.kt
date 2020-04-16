@@ -9,7 +9,7 @@ import com.applichic.favemus.model.User
     entities = [
         User::class
     ],
-    version = 5,
+    version = 6,
     exportSchema = false
 )
 @TypeConverters(DbTypeConverters::class)

@@ -1,6 +1,7 @@
-package com.applichic.favemus.di
+package com.applichic.favemus.di.activity
 
-import com.applichic.favemus.activity.MainActivity
+import com.applichic.favemus.ui.MainActivity
+import com.applichic.favemus.di.FragmentBuildersModule
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 

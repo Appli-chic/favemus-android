@@ -1,7 +1,7 @@
 package com.applichic.favemus.di
 
 
-import com.applichic.favemus.fragment.HomeFragment
+import com.applichic.favemus.ui.home.HomeFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 

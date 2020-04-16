@@ -9,6 +9,9 @@ data class User(
     @field:SerializedName("ID")
     val id: Int? = null,
 
+    @field:SerializedName("Email")
+    val email: String? = null,
+
     @field:SerializedName("Name")
     val name: String? = null,
 

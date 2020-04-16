@@ -1,4 +1,4 @@
-package com.applichic.favemus.viewmodel
+package com.applichic.favemus.ui.home
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -11,11 +11,11 @@ import com.applichic.favemus.util.AbsentLiveData
 import javax.inject.Inject
 
 
-class UserViewModel @Inject constructor(userRepository: UserRepository) : ViewModel() {
-    private val _id = MutableLiveData<Int>()
+class HomeViewModel @Inject constructor(userRepository: UserRepository) : ViewModel() {
+    private val _userId = MutableLiveData<Int>()
 
     val user: LiveData<Resource<User>> = Transformations
-        .switchMap(_id) { id ->
+        .switchMap(_userId) { id ->
             if (id == null) {
                 AbsentLiveData.create()
             } else {
@@ -24,8 +24,8 @@ class UserViewModel @Inject constructor(userRepository: UserRepository) : ViewMo
         }
 
     fun setId(id: Int?) {
-        if (_id.value != id) {
-            _id.value = id
+        if (_userId.value != id) {
+            _userId.value = id
         }
     }
 }

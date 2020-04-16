@@ -1,9 +1,9 @@
-package com.applichic.favemus.activity
+package com.applichic.favemus.ui
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.applichic.favemus.R
-import com.applichic.favemus.fragment.HomeFragment
+import com.applichic.favemus.ui.home.HomeFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.support.DaggerAppCompatActivity

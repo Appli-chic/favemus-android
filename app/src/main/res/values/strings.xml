@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Favemus</string>
+
+    <!-- Login-->
+    <string name="login">Login</string>
+    <string name="email_hint">Email</string>
+    <string name="email_password">Password</string>
+    <string name="login_no_account">Don\'t have an account?</string>
+    <string name="sign_up">Sign up</string>
 </resources>
