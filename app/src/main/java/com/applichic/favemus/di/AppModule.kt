@@ -2,6 +2,7 @@ package com.applichic.favemus.di
 
 import android.app.Application
 import androidx.room.Room
+import com.applichic.favemus.api.AuthService
 import com.applichic.favemus.api.UserService
 import com.applichic.favemus.db.LocalDatabase
 import com.applichic.favemus.db.UserDao
@@ -37,6 +38,12 @@ class AppModule {
     @Provides
     fun provideUserService(): UserService {
         return buildRetrofit().create(UserService::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun provideAuthService(): AuthService {
+        return buildRetrofit().create(AuthService::class.java)
     }
 
     @Singleton

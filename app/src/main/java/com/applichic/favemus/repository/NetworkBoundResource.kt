@@ -9,7 +9,8 @@ import com.applichic.favemus.api.ApiEmptyResponse
 import com.applichic.favemus.api.ApiErrorResponse
 import com.applichic.favemus.api.ApiResponse
 import com.applichic.favemus.api.ApiSuccessResponse
-import com.applichic.favemus.model.Resource
+import com.applichic.favemus.util.AbsentLiveData
+import com.applichic.favemus.util.Resource
 
 abstract class NetworkBoundResource<ResultType, RequestType>
 @MainThread constructor(private val appExecutors: AppExecutors) {
@@ -56,8 +57,13 @@ abstract class NetworkBoundResource<ResultType, RequestType>
                             // we specially request a new live data,
                             // otherwise we will get immediately last cached value,
                             // which may not be updated with latest results received from network.
-                            result.addSource(loadFromDb()) { newData ->
-                                setValue(Resource.success(newData))
+
+                            if(shouldLoadFromDb()) {
+                                result.addSource(loadFromDb()) { newData ->
+                                    setValue(Resource.success(newData))
+                                }
+                            } else {
+                                setValue(Resource.success(response.body as ResultType))
                             }
                         }
                     }
@@ -65,13 +71,18 @@ abstract class NetworkBoundResource<ResultType, RequestType>
                 is ApiEmptyResponse -> {
                     appExecutors.mainThread().execute {
                         // reload from disk whatever we had
-                        result.addSource(loadFromDb()) { newData ->
-                            setValue(Resource.success(newData))
+                        if(shouldLoadFromDb()) {
+                            result.addSource(loadFromDb()) { newData ->
+                                setValue(Resource.success(newData))
+                            }
+                        } else {
+                            AbsentLiveData.create<ResultType>()
                         }
                     }
                 }
                 is ApiErrorResponse -> {
                     onFetchFailed()
+
                     result.addSource(dbSource) { newData ->
                         setValue(Resource.error(response.errorMessage, newData))
                     }
@@ -95,6 +106,9 @@ abstract class NetworkBoundResource<ResultType, RequestType>
 
     @MainThread
     protected abstract fun loadFromDb(): LiveData<ResultType>
+
+    @MainThread
+    protected abstract fun shouldLoadFromDb(): Boolean
 
     @MainThread
     protected abstract fun createCall(): LiveData<ApiResponse<RequestType>>

@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import com.applichic.favemus.AppExecutors
 import com.applichic.favemus.api.UserService
 import com.applichic.favemus.db.UserDao
-import com.applichic.favemus.model.Resource
+import com.applichic.favemus.util.Resource
 import com.applichic.favemus.model.User
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -25,6 +25,8 @@ class UserRepository @Inject constructor(
             override fun shouldFetch(data: User?) = true
 
             override fun loadFromDb() = userDao.findById(userId)
+
+            override fun shouldLoadFromDb() = true
 
             override fun createCall() = userService.getUser(userId)
         }.asLiveData()

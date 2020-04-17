@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
-import com.applichic.favemus.model.Resource
+import com.applichic.favemus.util.Resource
 import com.applichic.favemus.model.User
 import com.applichic.favemus.repository.UserRepository
 import com.applichic.favemus.util.AbsentLiveData

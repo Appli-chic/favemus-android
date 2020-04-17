@@ -3,6 +3,7 @@ package com.applichic.favemus.di
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.applichic.favemus.ui.home.HomeViewModel
+import com.applichic.favemus.ui.login.LoginViewModel
 import com.applichic.favemus.viewmodel.ViewModelFactory
 
 import dagger.Binds
@@ -15,7 +16,12 @@ abstract class ViewModelModule {
     @Binds
     @IntoMap
     @ViewModelKey(HomeViewModel::class)
-    abstract fun bindUserViewModel(homeViewModel: HomeViewModel): ViewModel
+    abstract fun bindHomeViewModel(homeViewModel: HomeViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(LoginViewModel::class)
+    abstract fun bindLoginViewModel(loginViewModel: LoginViewModel): ViewModel
 
     @Binds
     abstract fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory

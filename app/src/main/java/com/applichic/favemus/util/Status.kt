@@ -1,4 +1,4 @@
-package com.applichic.favemus.model
+package com.applichic.favemus.util
 
 enum class Status {
     SUCCESS,
