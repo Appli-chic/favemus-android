@@ -1,6 +1,7 @@
 package com.applichic.favemus.ui.login
 
 import android.app.AlertDialog
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
@@ -10,8 +11,8 @@ import com.applichic.favemus.AppExecutors
 import com.applichic.favemus.R
 import com.applichic.favemus.repository.CODE_ERROR_EMAIL_OR_PASSWORD_INCORRECT
 import com.applichic.favemus.repository.CODE_ERROR_SERVER
-import com.applichic.favemus.util.Error
-import com.applichic.favemus.util.Status
+import com.applichic.favemus.ui.MainActivity
+import com.applichic.favemus.util.*
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_login.*
 import javax.inject.Inject
@@ -47,6 +48,16 @@ class LoginActivity : DaggerAppCompatActivity() {
 
             if (it.status == Status.SUCCESS) {
                 // Keep the access token and refresh token
+                val keyManager = PrivateKeyManager(this)
+
+                if(it.data?.refreshToken != null && it.data.accessToken != null) {
+                    keyManager.putData(REFRESH_TOKEN_KEY, it.data.refreshToken)
+                    keyManager.putData(ACCESS_TOKEN_KEY, it.data.accessToken)
+
+                    val mainActivity = Intent(this, MainActivity::class.java)
+                    mainActivity.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
+                    startActivity(mainActivity)
+                }
             }
         })
 

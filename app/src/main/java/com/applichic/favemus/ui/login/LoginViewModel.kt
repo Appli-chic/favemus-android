@@ -50,7 +50,8 @@ class LoginViewModel @Inject constructor(authRepository: AuthRepository) : ViewM
 
         // Login or show the errors
         if (errorList.isEmpty()) {
-            _loginBody.value = LoginBody(email, password)
+            _loginBody.value =
+                LoginBody(email, password)
         } else {
             _errorList.value = errorList
         }

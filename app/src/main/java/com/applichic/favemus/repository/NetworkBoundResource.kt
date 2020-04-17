@@ -1,5 +1,6 @@
 package com.applichic.favemus.repository
 
+import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.annotation.MainThread
@@ -9,7 +10,10 @@ import com.applichic.favemus.api.ApiEmptyResponse
 import com.applichic.favemus.api.ApiErrorResponse
 import com.applichic.favemus.api.ApiResponse
 import com.applichic.favemus.api.ApiSuccessResponse
+import com.applichic.favemus.favemusContext
+import com.applichic.favemus.util.ACCESS_TOKEN_KEY
 import com.applichic.favemus.util.AbsentLiveData
+import com.applichic.favemus.util.PrivateKeyManager
 import com.applichic.favemus.util.Resource
 
 abstract class NetworkBoundResource<ResultType, RequestType>
@@ -41,7 +45,14 @@ abstract class NetworkBoundResource<ResultType, RequestType>
     }
 
     private fun fetchFromNetwork(dbSource: LiveData<ResultType>) {
-        val apiResponse = createCall()
+        val keyManager = PrivateKeyManager(favemusContext!!)
+        var accessToken = keyManager.readData(ACCESS_TOKEN_KEY)
+
+        if(accessToken != null && accessToken.isNotBlank()) {
+            accessToken = "Bearer $accessToken"
+        }
+
+        val apiResponse = createCall(accessToken)
         // we re-attach dbSource as a new source, it will dispatch its latest value quickly
         result.addSource(dbSource) { newData ->
             setValue(Resource.loading(newData))
@@ -111,5 +122,5 @@ abstract class NetworkBoundResource<ResultType, RequestType>
     protected abstract fun shouldLoadFromDb(): Boolean
 
     @MainThread
-    protected abstract fun createCall(): LiveData<ApiResponse<RequestType>>
+    protected abstract fun createCall(accessToken: String?): LiveData<ApiResponse<RequestType>>
 }

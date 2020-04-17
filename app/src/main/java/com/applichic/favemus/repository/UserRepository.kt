@@ -1,11 +1,16 @@
 package com.applichic.favemus.repository
 
+import android.content.Context
 import androidx.lifecycle.LiveData
 import com.applichic.favemus.AppExecutors
+import com.applichic.favemus.api.ApiResponse
 import com.applichic.favemus.api.UserService
 import com.applichic.favemus.db.UserDao
+import com.applichic.favemus.favemusContext
 import com.applichic.favemus.util.Resource
 import com.applichic.favemus.model.User
+import com.applichic.favemus.util.ACCESS_TOKEN_KEY
+import com.applichic.favemus.util.PrivateKeyManager
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -28,7 +33,7 @@ class UserRepository @Inject constructor(
 
             override fun shouldLoadFromDb() = true
 
-            override fun createCall() = userService.getUser(userId)
+            override fun createCall(accessToken: String?) =  userService.getUser(userId, accessToken)
         }.asLiveData()
     }
 }

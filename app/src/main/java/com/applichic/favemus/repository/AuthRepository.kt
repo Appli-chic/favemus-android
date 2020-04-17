@@ -2,10 +2,11 @@ package com.applichic.favemus.repository
 
 import androidx.lifecycle.LiveData
 import com.applichic.favemus.AppExecutors
-import com.applichic.favemus.api.ApiResponse
 import com.applichic.favemus.api.AuthService
 import com.applichic.favemus.model.body.LoginBody
+import com.applichic.favemus.model.body.RefreshBody
 import com.applichic.favemus.model.response.LoginResponse
+import com.applichic.favemus.model.response.RefreshResponse
 import com.applichic.favemus.util.AbsentLiveData
 import com.applichic.favemus.util.Resource
 import javax.inject.Inject
@@ -32,7 +33,7 @@ class AuthRepository @Inject constructor(
 
             override fun shouldLoadFromDb() = false
 
-            override fun createCall() = authService.login(loginBody)
+            override fun createCall(accessToken: String?) = authService.login(loginBody)
         }.asLiveData()
     }
 }
