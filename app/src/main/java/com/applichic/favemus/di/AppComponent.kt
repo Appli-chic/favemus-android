@@ -4,6 +4,7 @@ import android.app.Application
 import com.applichic.favemus.FavemusApplication
 import com.applichic.favemus.di.activity.LoginActivityModule
 import com.applichic.favemus.di.activity.MainActivityModule
+import com.applichic.favemus.di.activity.RegisterActivityModule
 import com.applichic.favemus.di.activity.SplashActivityModule
 import dagger.BindsInstance
 import dagger.Component
@@ -17,7 +18,8 @@ import javax.inject.Singleton
         AppModule::class,
         MainActivityModule::class,
         SplashActivityModule::class,
-        LoginActivityModule::class
+        LoginActivityModule::class,
+        RegisterActivityModule::class
     ]
 )
 

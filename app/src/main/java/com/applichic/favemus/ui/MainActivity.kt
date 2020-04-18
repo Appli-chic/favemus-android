@@ -10,6 +10,7 @@ import dagger.android.support.DaggerAppCompatActivity
 
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
+import kotlin.system.exitProcess
 
 class MainActivity : DaggerAppCompatActivity() {
 
@@ -54,5 +55,10 @@ class MainActivity : DaggerAppCompatActivity() {
         }
 
         false
+    }
+
+    override fun onBackPressed() {
+        finishAffinity()
+        exitProcess(0)
     }
 }

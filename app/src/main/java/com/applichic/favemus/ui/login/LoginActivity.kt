@@ -12,10 +12,12 @@ import com.applichic.favemus.R
 import com.applichic.favemus.repository.CODE_ERROR_EMAIL_OR_PASSWORD_INCORRECT
 import com.applichic.favemus.repository.CODE_ERROR_SERVER
 import com.applichic.favemus.ui.MainActivity
+import com.applichic.favemus.ui.register.RegisterActivity
 import com.applichic.favemus.util.*
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_login.*
 import javax.inject.Inject
+import kotlin.system.exitProcess
 
 
 class LoginActivity : DaggerAppCompatActivity() {
@@ -68,7 +70,6 @@ class LoginActivity : DaggerAppCompatActivity() {
                     keyManager.putData(ACCESS_TOKEN_KEY, it.data.accessToken)
 
                     val mainActivity = Intent(this, MainActivity::class.java)
-                    mainActivity.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
                     startActivity(mainActivity)
                 }
             }
@@ -104,5 +105,15 @@ class LoginActivity : DaggerAppCompatActivity() {
             password_text_field.text.toString(),
             this
         )
+    }
+
+    fun onRegisterClicked(view: View) {
+        val registerActivity = Intent(this, RegisterActivity::class.java)
+        startActivity(registerActivity)
+    }
+
+    override fun onBackPressed() {
+        finishAffinity()
+        exitProcess(0)
     }
 }

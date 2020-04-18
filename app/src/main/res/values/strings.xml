@@ -6,9 +6,8 @@
     <!-- Login-->
     <string name="login">Login</string>
     <string name="email_hint">Email</string>
-    <string name="email_password">Password</string>
+    <string name="password_hint">Password</string>
     <string name="login_no_account">Don\'t have an account?</string>
-    <string name="sign_up">Sign up</string>
 
     <string name="login_error_email_empty">The email must no be empty.</string>
     <string name="login_error_invalid_email">The email isn\'t valid.</string>
@@ -16,4 +15,12 @@
     <string name="login_error_password_too_short">The password must have at least 6 characters.</string>
     <string name="login_error_email_or_password_incorrect">The email or password is incorrect.</string>
 
+    <!-- Register-->
+    <string name="sign_up">Sign up</string>
+    <string name="verify_password_hint">Verify password</string>
+    <string name="name_hint">Name</string>
+    <string name="country_hint">Country</string>
+
+    <!-- Language Dialog-->
+    <string name="dialog_language_title">Select a country</string>
 </resources>
