@@ -3,6 +3,7 @@
     <color name="colorPrimary">#F15142</color>
     <color name="colorSecondary">#D13447</color>
     <color name="colorBackground">#1F222C</color>
+    <color name="colorBackgroundWithOpacity">#B31F222C</color>
     <color name="secondColorBackground">#3F4656</color>
     <color name="secondTextColor">#BABABA</color>
 </resources>

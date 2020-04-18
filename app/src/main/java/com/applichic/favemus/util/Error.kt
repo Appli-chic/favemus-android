@@ -1,6 +1,7 @@
 package com.applichic.favemus.util
 
 import com.google.gson.Gson
+import com.google.gson.JsonSyntaxException
 
 
 class Error {
@@ -8,9 +9,13 @@ class Error {
     val code: String? = null
 
     companion object {
-        fun fromJson(data: String?): Error {
-            val gson = Gson()
-            return gson.fromJson(data, Error::class.java)
+        fun fromJson(data: String?): Error? {
+            return try {
+                val gson = Gson()
+                gson.fromJson(data, Error::class.java)
+            } catch (e: JsonSyntaxException) {
+                null
+            }
         }
     }
 }

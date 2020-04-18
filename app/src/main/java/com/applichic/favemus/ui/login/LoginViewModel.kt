@@ -17,6 +17,9 @@ import javax.inject.Inject
 class LoginViewModel @Inject constructor(authRepository: AuthRepository) : ViewModel() {
     private var _loginBody = MutableLiveData<LoginBody>()
     private var _errorList = MutableLiveData<ArrayList<String>>()
+    private var _isLoading = MutableLiveData<Boolean>()
+
+    val isLoading: LiveData<Boolean> = _isLoading
 
     val errors: LiveData<ArrayList<String>> = _errorList
 
@@ -31,6 +34,10 @@ class LoginViewModel @Inject constructor(authRepository: AuthRepository) : ViewM
 
     fun setErrors(errors: ArrayList<String>) {
         _errorList.value = errors
+    }
+
+    fun setLoading(isLoading: Boolean) {
+        _isLoading.value = isLoading
     }
 
     fun onLoginClicked(email: String, password: String, context: Context) {
@@ -50,6 +57,7 @@ class LoginViewModel @Inject constructor(authRepository: AuthRepository) : ViewM
 
         // Login or show the errors
         if (errorList.isEmpty()) {
+            _isLoading.value = true
             _loginBody.value =
                 LoginBody(email, password)
         } else {

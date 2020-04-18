@@ -14,18 +14,18 @@ class SplashActivity : DaggerAppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
-        val keyManager = PrivateKeyManager(this)
-        if(keyManager.readData(REFRESH_TOKEN_KEY) != null) {
-            // The user is already connected
-            val mainActivity = Intent(this, MainActivity::class.java)
-            mainActivity.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
-            startActivity(mainActivity)
-        } else {
+//        val keyManager = PrivateKeyManager(this)
+//        if(keyManager.readData(REFRESH_TOKEN_KEY) != null) {
+//            // The user is already connected
+//            val mainActivity = Intent(this, MainActivity::class.java)
+//            mainActivity.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
+//            startActivity(mainActivity)
+//        } else {
             // Not connected yet
             val loginActivity = Intent(this, LoginActivity::class.java)
             loginActivity.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
             startActivity(loginActivity)
-        }
+//        }
     }
 
 }

@@ -33,17 +33,30 @@ class LoginActivity : DaggerAppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        loginViewModel.isLoading.observe(this, Observer {
+            if(it) {
+                layout_loading.visibility = View.VISIBLE
+            } else {
+                layout_loading.visibility = View.GONE
+            }
+        })
+
         loginViewModel.loginResponse.observe(this, Observer {
             if (it.status == Status.ERROR) {
                 val err = Error.fromJson(it.message)
 
-                val message = when (err.code) {
-                    CODE_ERROR_SERVER -> resources.getString(R.string.server_error)
-                    CODE_ERROR_EMAIL_OR_PASSWORD_INCORRECT -> resources.getString(R.string.login_error_email_or_password_incorrect)
-                    else -> resources.getString(R.string.server_error)
-                }
+                if(err == null) {
+                    val message = resources.getString(R.string.server_error)
+                    loginViewModel.setErrors(arrayListOf(message))
+                } else {
+                    val message = when (err.code) {
+                        CODE_ERROR_SERVER -> resources.getString(R.string.server_error)
+                        CODE_ERROR_EMAIL_OR_PASSWORD_INCORRECT -> resources.getString(R.string.login_error_email_or_password_incorrect)
+                        else -> resources.getString(R.string.server_error)
+                    }
 
-                loginViewModel.setErrors(arrayListOf(message))
+                    loginViewModel.setErrors(arrayListOf(message))
+                }
             }
 
             if (it.status == Status.SUCCESS) {
@@ -63,6 +76,7 @@ class LoginActivity : DaggerAppCompatActivity() {
 
         loginViewModel.errors.observe(this, Observer {
             if (it.isNotEmpty()) {
+                loginViewModel.setLoading(false)
                 displaysErrors(it)
             }
         })
