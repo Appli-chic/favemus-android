@@ -1,6 +1,5 @@
 package com.applichic.favemus.dialog
 
-import android.R
 import android.content.Context
 
 
