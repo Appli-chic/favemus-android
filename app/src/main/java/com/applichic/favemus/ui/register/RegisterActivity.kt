@@ -7,6 +7,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.applichic.favemus.AppExecutors
 import com.applichic.favemus.R
+import com.applichic.favemus.dialog.Country
 import com.applichic.favemus.dialog.LanguageDialog
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_register.*
@@ -35,7 +36,7 @@ class RegisterActivity : DaggerAppCompatActivity() {
         supportActionBar?.setDisplayShowHomeEnabled(true)
 
         registerViewModel.isLoading.observe(this, Observer {
-            if(it) {
+            if (it) {
                 layout_loading.visibility = View.VISIBLE
             } else {
                 layout_loading.visibility = View.GONE
@@ -49,5 +50,11 @@ class RegisterActivity : DaggerAppCompatActivity() {
     fun onSelectCountry(view: View) {
         val languageDialog = LanguageDialog(this)
         languageDialog.show()
+
+        languageDialog.setOnItemClickListener(object : LanguageDialog.ClickListener {
+            override fun onItemClick(country: Country) {
+                country_text_field.setText(country.name)
+            }
+        })
     }
 }

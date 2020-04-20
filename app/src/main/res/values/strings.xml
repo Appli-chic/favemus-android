@@ -23,4 +23,6 @@
 
     <!-- Language Dialog-->
     <string name="dialog_language_title">Select a country</string>
+    <string name="dialog_language_flag">Flag</string>
+    <string name="dialog_language_search">Search…</string>
 </resources>
