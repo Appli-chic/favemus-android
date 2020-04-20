@@ -17,6 +17,7 @@
 
     <!-- Register-->
     <string name="sign_up">Sign up</string>
+    <string name="sign_up_continue">Continue</string>
     <string name="verify_password_hint">Verify password</string>
     <string name="name_hint">Name</string>
     <string name="country_hint">Country</string>

@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.applichic.favemus.repository.AuthRepository
 import javax.inject.Inject
 
-class RegisterViewModel @Inject constructor(authRepository: AuthRepository) : ViewModel() {
+class RegisterViewModel @Inject constructor() : ViewModel() {
     private var _isLoading = MutableLiveData<Boolean>()
 
     val isLoading: LiveData<Boolean> = _isLoading

@@ -150,7 +150,7 @@
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/colorPrimary"
                     android:onClick="onRegisterClicked"
-                    android:text="@string/sign_up"
+                    android:text="@string/sign_up_continue"
                     android:textColor="@android:color/white" />
 
             </LinearLayout>
